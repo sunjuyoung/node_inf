@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 //application/json
 app.use(bodyParser.json());
 
+
 //mongoDB
 const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI,
@@ -26,11 +27,18 @@ app.get('/',(req,res)=>{
 
 app.post('/register',(req,res)=>{
     //회원 가입할때 필요한 정보들을 client에서 가져와서 DB에 넣어준다
-
+    console.log("1111")
 
     const user = new User(req.body)
+
+    console.log("2222")
+
     user.save((err,userInfo)=>{
         if(err) return res.json({success:false,err})
+
+
+        console.log("3333")
+
 
         return res.status(200).json({success:true})
     })
